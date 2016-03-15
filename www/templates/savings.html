@@ -1,0 +1,79 @@
+<ion-view>
+
+  <ion-content ng-cloak  class="profile-content">
+
+    <ion-refresher
+      pulling-text="Pull to refresh"
+      on-refresh="refresh()"
+      refreshing-text="Refreshing!">
+    </ion-refresher>
+
+    <ion-list >
+      <ion-item href="#/app/savings/{{saving._id}}" ng-repeat="saving in savings track by $index |orderBy:'votesreal'" class="savings-list">
+
+
+        <div class="row group-item">
+
+          <div class="col-75 title-70">
+
+            <div class="row">
+              <button ng-class="buttonColour(saving.votes)" class='button small-button-home-votes'>{{saving.votes}}</button>
+            </div>
+
+
+            <div class="row title-text"><div class="timeframe-row-item-3-text">{{saving.title}} (<span
+              class="bolder">&euro;{{saving.price.toFixed(2)}} @ {{saving.retailer}})</span></div></div>
+
+
+
+
+          </div>
+          <div class="col-25 image-30">
+
+            <div class="saving-image-box">
+              <img class="list-image thumbnail" ng-src="{{productImage(saving)}}">
+            </div>
+
+
+            <!--<div class="row">-->
+              <!--&lt;!&ndash;<div class="col save-button">&ndash;&gt;-->
+                <!--&lt;!&ndash;<a class=" text-center" href="#/app/savings/{{saving._id}}">&ndash;&gt;-->
+                  <!--&lt;!&ndash;<button class="save-button">SAVE</button>&ndash;&gt;-->
+                <!--&lt;!&ndash;</a>&ndash;&gt;-->
+              <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+              <div class="save-button-area text-center">
+                <button class='button button-positive small-button-home'>SAVE</button>
+              </div>
+
+              <!--&lt;!&ndash;</a>&ndash;&gt;-->
+            <!--</div>-->
+
+
+          </div>
+
+
+        </div>
+        <div class="row bottom-row">
+
+
+
+          <img ng-src="{{userImage(saving)}}"
+               class="small-profile-image-thumbnail"
+               alt="{{saving.user.username}}"/>
+
+          <div class="username" data-ng-bind="saving.user.username"></div>
+          <div class="username-date">{{saving.created | date : format}}</div>
+
+
+
+        </div>
+
+
+      </ion-item>
+
+    </ion-list>
+
+
+  </ion-content>
+</ion-view>
